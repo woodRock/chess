@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://bobn8eo1simqb"]
+
+[ext_resource type="Script" uid="uid://b2gu7bqx2n4vn" path="res://board.gd" id="1_p0ybc"]
+[ext_resource type="Texture2D" uid="uid://cr1lku07l36wb" path="res://art/white_queen.svg" id="2_vf5bc"]
+[ext_resource type="Texture2D" uid="uid://qisaumos7b53" path="res://art/white_rook.svg" id="3_mgc1s"]
+[ext_resource type="Texture2D" uid="uid://dnp45xyp0eesa" path="res://art/white_knight.svg" id="4_rq8yp"]
+[ext_resource type="Texture2D" uid="uid://bal1cx2x7hk7l" path="res://art/white_bishop.svg" id="5_tngv2"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_p0ybc")
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GameOverUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultLabel" type="Label" parent="GameOverUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="GameOverUI/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="PromotionMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PromotionMenu"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Queen" type="Button" parent="PromotionMenu/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("2_vf5bc")
+expand_icon = true
+
+[node name="Rook" type="Button" parent="PromotionMenu/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("3_mgc1s")
+expand_icon = true
+
+[node name="Knight" type="Button" parent="PromotionMenu/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("4_rq8yp")
+expand_icon = true
+
+[node name="Bishop" type="Button" parent="PromotionMenu/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("5_tngv2")
+expand_icon = true
+
+[node name="BlackGraveyard" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WhiteGraveyard" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[connection signal="pressed" from="GameOverUI/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PromotionMenu/HBoxContainer/Queen" to="." method="_on_queen_pressed"]
+[connection signal="pressed" from="PromotionMenu/HBoxContainer/Rook" to="." method="_on_rook_pressed"]
+[connection signal="pressed" from="PromotionMenu/HBoxContainer/Knight" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="PromotionMenu/HBoxContainer/Bishop" to="." method="_on_bishop_pressed"]
