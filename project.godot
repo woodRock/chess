@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Chess"
-config/description="The classic game of Chess in Godot Engine"
+config/description="The classic game of Chess in Godot Engine."
+run/main_scene="uid://dgpx2nnbybvcd"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Chess.png"
 
@@ -22,3 +23,7 @@ enabled=PackedStringArray()
 [filesystem]
 
 import/blender/enabled=false
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
